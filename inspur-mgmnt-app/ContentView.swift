@@ -61,9 +61,6 @@ struct ContentView: View {
                     }
                 }
             }
-            .refreshable {
-                await viewModel.fetchAllData()
-            }
         }
     }
 }
@@ -208,48 +205,48 @@ struct PSUDetailView: View {
                     .foregroundColor(.secondary)
             }
             
-            HStack(spacing: 16) {
-                VStack(alignment: .leading, spacing: 4) {
-                    Label("Input", systemImage: "arrow.down.circle.fill")
-                        .font(.caption)
-                        .foregroundColor(.blue)
-                    Text("\(psu.inputPowerWatts) W")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                }
-                
-                Divider()
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Label("Output", systemImage: "arrow.up.circle.fill")
-                        .font(.caption)
-                        .foregroundColor(.green)
-                    Text("\(psu.outputPowerWatts) W")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                }
-                
-                Divider()
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Label("Temp", systemImage: "thermometer")
-                        .font(.caption)
-                        .foregroundColor(.orange)
-                    Text("\(psu.temperature)°C")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .trailing, spacing: 4) {
-                    Text("Efficiency")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Text(String(format: "%.1f%%", psu.efficiency))
-                        .font(.callout)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.green)
+            Grid(alignment: .leading, horizontalSpacing: 12, verticalSpacing: 8) {
+                GridRow {
+                    VStack(spacing: 4) {
+                        Image(systemName: "arrow.down.circle.fill")
+                            .font(.title3)
+                            .foregroundColor(.blue)
+                        Text("\(psu.inputPowerWatts) W")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    VStack(spacing: 4) {
+                        Image(systemName: "arrow.up.circle.fill")
+                            .font(.title3)
+                            .foregroundColor(.green)
+                        Text("\(psu.outputPowerWatts) W")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    VStack(spacing: 4) {
+                        Image(systemName: "thermometer")
+                            .font(.title3)
+                            .foregroundColor(.orange)
+                        Text("\(psu.temperature)°C")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    VStack(spacing: 4) {
+                        Image(systemName: "gauge.high")
+                            .font(.title3)
+                            .foregroundColor(.green)
+                        Text(String(format: "%.1f%%", psu.efficiency))
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.green)
+                    }
+                    .frame(maxWidth: .infinity)
                 }
             }
         }
