@@ -343,9 +343,9 @@ struct FanSliderView: View {
             }
             
             HStack(spacing: 12) {
-                Image(systemName: "tortoise.fill")
+                Image(systemName: "fan.fill")
                     .foregroundColor(.secondary)
-                    .font(.caption)
+                    .font(.caption2)
                 
                 Slider(value: $sliderValue, in: 0...100, step: 5) { editing in
                     isChanging = editing
@@ -358,9 +358,9 @@ struct FanSliderView: View {
                 }
                 .tint(.blue)
                 
-                Image(systemName: "hare.fill")
+                Image(systemName: "fan.fill")
                     .foregroundColor(.blue)
-                    .font(.caption)
+                    .font(.title3)
                 
                 Text("\(Int(sliderValue))%")
                     .font(.caption)
@@ -403,9 +403,9 @@ struct SetAllFansView: View {
             }
             
             HStack(spacing: 12) {
-                Image(systemName: "tortoise.fill")
+                Image(systemName: "fan.fill")
                     .foregroundColor(.secondary)
-                    .font(.caption)
+                    .font(.caption2)
                 
                 Slider(value: $allFansValue, in: 0...100, step: 5) { editing in
                     isChanging = editing
@@ -418,9 +418,9 @@ struct SetAllFansView: View {
                 }
                 .tint(.purple)
                 
-                Image(systemName: "hare.fill")
+                Image(systemName: "fan.fill")
                     .foregroundColor(.purple)
-                    .font(.caption)
+                    .font(.title3)
                 
                 Text("\(Int(allFansValue))%")
                     .font(.caption)

@@ -123,7 +123,7 @@ A native iOS app for managing your Inspur server through its BMC interface.
   - Loading spinner during operation
 - 8 individual fan sliders (only active in Manual mode)
 - Current RPM and percentage display for each fan
-- Tortoise/hare speed icons
+- Small/large fan icons for speed indication
 - Real-time updates every 5 seconds
 
 ## Build Information
