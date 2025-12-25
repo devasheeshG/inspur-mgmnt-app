@@ -240,6 +240,13 @@ class APIService: NSObject {
         let request = try buildRequest(endpoint: "/api/status/psu_info")
         return try await performRequest(request)
     }
+    
+    // MARK: - Sensor Monitoring
+    
+    func getSensors() async throws -> [Sensor] {
+        let request = try buildRequest(endpoint: "/api/sensors")
+        return try await performRequest(request)
+    }
 }
 
 // MARK: - URLSessionDelegate for SSL Certificate Handling

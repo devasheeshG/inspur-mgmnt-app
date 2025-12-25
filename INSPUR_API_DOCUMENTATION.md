@@ -400,6 +400,66 @@ Cookie: QSESSIONID=<session-id>
 
 ---
 
+## **5. Sensor Monitoring**
+
+### **Get All Sensors**
+
+**Endpoint:** `GET /api/sensors`
+
+**Required Headers:**
+```
+X-CSRFTOKEN: <token-from-login>
+X-Requested-With: XMLHttpRequest
+Cookie: QSESSIONID=<session-id>
+```
+
+**Response:** Array of sensor objects
+
+**CPU Temperature Sensor Example:**
+```json
+{
+  "id": 3,
+  "sensor_number": 6,
+  "name": "CPU0_Temp",
+  "owner_id": 32,
+  "owner_lun": 0,
+  "raw_reading": 27.0,
+  "type": "temperature",
+  "type_number": 1,
+  "reading": 27.0,
+  "sensor_state": 1,
+  "discrete_state": 0,
+  "lower_non_recoverable_threshold": 0.0,
+  "lower_critical_threshold": 0.0,
+  "lower_non_critical_threshold": 0.0,
+  "higher_non_critical_threshold": 0.0,
+  "higher_critical_threshold": 0.0,
+  "higher_non_recoverable_threshold": 0.0,
+  "accessible": 0,
+  "unit": "deg_c"
+}
+```
+
+**Key Sensor Fields:**
+- `name`: Sensor identifier (e.g., "CPU0_Temp", "CPU1_Temp", "Inlet_Temp")
+- `reading`: Current sensor value (temperature in °C for temp sensors)
+- `type`: Sensor type ("temperature", "voltage", "fan", etc.)
+- `unit`: Unit of measurement ("deg_c" for Celsius)
+- `sensor_state`: `1` = active/normal
+- Threshold fields define warning/critical limits
+
+**Common Temperature Sensors:**
+- `CPU0_Temp` - CPU 0 package temperature
+- `CPU1_Temp` - CPU 1 package temperature  
+- `Inlet_Temp` - Server inlet air temperature
+- `Outlet_Temp` - Server exhaust air temperature
+- `CPU0_Margin_Temp` - CPU 0 thermal margin (headroom before throttling)
+- `CPU1_Margin_Temp` - CPU 1 thermal margin
+
+**Note:** The `/api/sensors` endpoint returns all system sensors including temperatures, voltages, fan speeds, and power metrics. Filter by `name` field to extract specific sensors of interest.
+
+---
+
 ## **Authentication Flow Summary**
 
 1. **Login:** `POST /api/session` with credentials

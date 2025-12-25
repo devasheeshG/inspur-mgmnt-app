@@ -199,3 +199,54 @@ struct PSUInfo: Codable {
         powerSupplies.reduce(0) { $0 + $1.psOutPower }
     }
 }
+
+// MARK: - Sensor Models
+
+struct Sensor: Codable, Identifiable {
+    let id: Int
+    let sensorNumber: Int
+    let name: String
+    let ownerId: Int
+    let ownerLun: Int
+    let rawReading: Double
+    let type: String
+    let typeNumber: Int
+    let reading: Double
+    let sensorState: Int
+    let discreteState: Int
+    let lowerNonRecoverableThreshold: Double
+    let lowerCriticalThreshold: Double
+    let lowerNonCriticalThreshold: Double
+    let higherNonCriticalThreshold: Double
+    let higherCriticalThreshold: Double
+    let higherNonRecoverableThreshold: Double
+    let accessible: Int
+    let unit: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case sensorNumber = "sensor_number"
+        case name
+        case ownerId = "owner_id"
+        case ownerLun = "owner_lun"
+        case rawReading = "raw_reading"
+        case type
+        case typeNumber = "type_number"
+        case reading
+        case sensorState = "sensor_state"
+        case discreteState = "discrete_state"
+        case lowerNonRecoverableThreshold = "lower_non_recoverable_threshold"
+        case lowerCriticalThreshold = "lower_critical_threshold"
+        case lowerNonCriticalThreshold = "lower_non_critical_threshold"
+        case higherNonCriticalThreshold = "higher_non_critical_threshold"
+        case higherCriticalThreshold = "higher_critical_threshold"
+        case higherNonRecoverableThreshold = "higher_non_recoverable_threshold"
+        case accessible
+        case unit
+    }
+}
+
+struct CPUTemperature: Identifiable {
+    let id: Int // CPU number (0, 1)
+    let temperature: Double // Temperature in Celsius
+}

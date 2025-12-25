@@ -19,6 +19,7 @@ class AppViewModel: ObservableObject {
     @Published var powerStatus: PowerStatus?
     @Published var fanInfo: FanInfo?
     @Published var psuInfo: PSUInfo?
+    @Published var cpuTemperatures: [CPUTemperature] = []
     @Published var lastUpdated: Date?
     
     // Fetch state
@@ -118,6 +119,7 @@ class AppViewModel: ObservableObject {
             group.addTask { await self.fetchPowerStatus() }
             group.addTask { await self.fetchFanInfo() }
             group.addTask { await self.fetchPSUInfo() }
+            group.addTask { await self.fetchCPUTemperatures() }
             
             for await success in group {
                 if !success {
@@ -168,6 +170,42 @@ class AppViewModel: ObservableObject {
             return true
         } catch {
             print("[DEBUG] ✗ PSU info fetch failed: \(error.localizedDescription)")
+            handleError(error)
+            return false
+        }
+    }
+    
+    func fetchCPUTemperatures() async -> Bool {
+        do {
+            let sensors = try await apiService.getSensors()
+            
+            // Filter for CPU temperature sensors
+            let cpuSensors = sensors.filter { sensor in
+                sensor.name.starts(with: "CPU") && 
+                sensor.name.hasSuffix("_Temp") &&
+                !sensor.name.contains("Margin")
+            }
+            
+            // Parse CPU temperatures and remove duplicates
+            var uniqueCPUs: [Int: CPUTemperature] = [:]
+            
+            for sensor in cpuSensors {
+                // Extract CPU number from name like "CPU0_Temp" or "CPU1_Temp"
+                if let cpuNumStr = sensor.name.split(separator: "_").first?.dropFirst(3),
+                   let cpuNum = Int(cpuNumStr) {
+                    // Only add if we haven't seen this CPU ID yet
+                    if uniqueCPUs[cpuNum] == nil {
+                        uniqueCPUs[cpuNum] = CPUTemperature(id: cpuNum, temperature: sensor.reading)
+                    }
+                }
+            }
+            
+            cpuTemperatures = uniqueCPUs.values.sorted { $0.id < $1.id }
+            
+            print("[DEBUG] ✓ CPU temperatures fetched: \(cpuTemperatures.count) CPUs")
+            return true
+        } catch {
+            print("[DEBUG] ✗ CPU temperature fetch failed: \(error.localizedDescription)")
             handleError(error)
             return false
         }

@@ -41,6 +41,11 @@ struct ContentView: View {
                     // Power Control Section
                     PowerControlCard(viewModel: viewModel)
                     
+                    // CPU Temperature Section
+                    if !viewModel.cpuTemperatures.isEmpty {
+                        CPUTemperatureCard(cpuTemperatures: viewModel.cpuTemperatures)
+                    }
+                    
                     // PSU Monitoring Section
                     if let psuInfo = viewModel.psuInfo {
                         PSUMonitoringCard(psuInfo: psuInfo)
@@ -421,6 +426,61 @@ struct SetAllFansView: View {
         .padding()
         .background(Color(.secondarySystemBackground))
         .cornerRadius(12)
+    }
+}
+
+struct CPUTemperatureCard: View {
+    let cpuTemperatures: [CPUTemperature]
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack {
+                Image(systemName: "cpu.fill")
+                    .font(.title2)
+                    .foregroundColor(.red)
+                Text("CPU Temperatures")
+                    .font(.headline)
+                Spacer()
+            }
+            
+            HStack(spacing: 12) {
+                ForEach(cpuTemperatures) { cpu in
+                    VStack(spacing: 8) {
+                        Text("CPU \(cpu.id)")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        
+                        Image(systemName: "thermometer")
+                            .font(.title2)
+                            .foregroundColor(temperatureColor(cpu.temperature))
+                        
+                        Text(String(format: "%.0f°C", cpu.temperature))
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(temperatureColor(cpu.temperature))
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color(.tertiarySystemBackground))
+                    .cornerRadius(12)
+                }
+            }
+        }
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+    }
+    
+    private func temperatureColor(_ temp: Double) -> Color {
+        switch temp {
+        case ..<40:
+            return .green
+        case 40..<60:
+            return .orange
+        default:
+            return .red
+        }
     }
 }
 
