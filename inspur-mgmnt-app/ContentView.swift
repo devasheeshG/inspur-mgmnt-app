@@ -272,14 +272,26 @@ struct FanControlCard: View {
                     .font(.headline)
                 Spacer()
                 
-                HStack(spacing: 4) {
-                    Circle()
-                        .fill(fanInfo.controlMode == "manual" ? Color.blue : Color.orange)
-                        .frame(width: 8, height: 8)
-                    Text(fanInfo.controlMode.uppercased())
+                // Mode Toggle
+                HStack(spacing: 8) {
+                    Text("Auto")
                         .font(.caption)
-                        .fontWeight(.semibold)
-                        .foregroundColor(fanInfo.controlMode == "manual" ? .blue : .orange)
+                        .foregroundColor(fanInfo.controlMode == "auto" ? .orange : .secondary)
+                    
+                    Toggle("", isOn: Binding(
+                        get: { fanInfo.controlMode == "manual" },
+                        set: { isManual in
+                            Task {
+                                await viewModel.setFanMode(mode: isManual ? "manual" : "auto")
+                            }
+                        }
+                    ))
+                    .labelsHidden()
+                    .tint(.blue)
+                    
+                    Text("Manual")
+                        .font(.caption)
+                        .foregroundColor(fanInfo.controlMode == "manual" ? .blue : .secondary)
                 }
             }
             

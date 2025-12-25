@@ -212,6 +212,26 @@ class AppViewModel: ObservableObject {
         }
     }
     
+    func setFanMode(mode: String) async {
+        print("[DEBUG] 🔄 Setting fan mode to \(mode)")
+        isLoading = true
+        errorMessage = nil
+        
+        do {
+            try await apiService.setFanMode(mode: mode)
+            print("[DEBUG] ✓ Fan mode set to \(mode) successfully")
+            
+            // Refresh fan info to get updated mode
+            try await Task.sleep(nanoseconds: 500_000_000) // 0.5 seconds
+            await fetchFanInfo()
+        } catch {
+            print("[DEBUG] ✗ Fan mode change failed: \(error.localizedDescription)")
+            handleError(error)
+        }
+        
+        isLoading = false
+    }
+    
     // MARK: - Polling
     
     func startPolling() {

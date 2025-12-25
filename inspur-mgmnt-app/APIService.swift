@@ -203,6 +203,19 @@ class APIService: NSObject {
         return try await performRequest(request)
     }
     
+    func setFanMode(mode: String) async throws {
+        let fanMode = ["control_mode": mode]
+        let bodyData = try JSONEncoder().encode(fanMode)
+        
+        let request = try buildRequest(
+            endpoint: "/api/settings/fans-mode",
+            method: "PUT",
+            body: bodyData
+        )
+        
+        let _: FanMode = try await performRequest(request)
+    }
+    
     func getFanInfo() async throws -> FanInfo {
         let request = try buildRequest(endpoint: "/api/status/fan_info")
         return try await performRequest(request)

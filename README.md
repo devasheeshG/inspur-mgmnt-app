@@ -4,13 +4,17 @@ A native iOS app for managing your Inspur server through its BMC interface.
 
 ## Features
 
-1. **Power Control** - Power on your server remotely (power off disabled for safety)
-2. **Fan Speed Control** - Manually adjust all 8 fans independently (0-100%)
-3. **PSU Monitoring** - Real-time power consumption for both power supplies
-4. **Secure Credential Storage** - Login once, credentials stored in iOS Keychain
-5. **Auto-Login** - Automatically reconnects on app launch
-6. **Session Management** - Handles CSRF tokens and session cookies
-7. **SSL Support** - Works with self-signed BMC certificates
+1. **Power Control** - Power on your server remotely with status indicator
+2. **Fan Mode Toggle** - Switch between automatic and manual fan control modes
+3. **Fan Speed Control** - Manually adjust all 8 fans independently (0-100%)
+4. **PSU Monitoring** - Real-time power consumption, efficiency, and temperature for both PSUs
+5. **Secure Credential Storage** - Login once, credentials stored in iOS Keychain
+6. **Auto-Login** - Automatically reconnects on app launch with stored credentials
+7. **Session Management** - Handles CSRF tokens and session cookies automatically
+8. **SSL Support** - Works with self-signed BMC certificates
+9. **Auto-Refresh** - 5-second polling for real-time data updates
+10. **Last Updated Timestamp** - Shows exact time of last successful data refresh
+11. **Debug Logging** - Comprehensive console logs for troubleshooting
 
 ## Architecture
 
@@ -24,12 +28,14 @@ A native iOS app for managing your Inspur server through its BMC interface.
 - **inspur_mgmnt_appApp.swift** - App entry point with authentication flow
 
 ### API Endpoints Used
-- `POST /api/session` - Authentication
-- `GET /api/chassis-status` - Power status
-- `POST /api/actions/power` - Power control
-- `GET /api/status/fan_info` - Fan information
-- `PUT /api/settings/fan/{id}` - Set fan speed
-- `GET /api/status/psu_info` - Power supply data
+- `POST /api/session` - Authentication with username/password
+- `GET /api/chassis-status` - Get current power status (on/off)
+- `POST /api/actions/power` - Send power on command
+- `GET /api/settings/fans-mode` - Get current fan control mode
+- `PUT /api/settings/fans-mode` - Set fan control mode (auto/manual)
+- `GET /api/status/fan_info` - Get all fan speeds, RPMs, and status
+- `PUT /api/settings/fan/{id}` - Set individual fan speed (manual mode only)
+- `GET /api/status/psu_info` - Get PSU power consumption, temperature, and efficiency
 
 ## Usage
 
@@ -40,11 +46,17 @@ A native iOS app for managing your Inspur server through its BMC interface.
    - Tap "Sign In"
 
 2. **Dashboard:**
-   - **Power On Button** - Tap to power on the server (grayed out when server is on)
-   - **PSU Cards** - View input/output power, temperature, and efficiency for each PSU
-   - **Fan Sliders** - Drag to adjust fan speed (0-100%), updates in real-time
-   - **Refresh** - Pull down to refresh or use menu → Refresh
-   - **Logout** - Menu → Logout to clear credentials
+   - **Last Updated Timestamp** - Shows exact date and time of last data refresh
+   - **Power On Button** - Tap to power on the server (disabled when already on)
+   - **PSU Cards** - View total and individual PSU metrics:
+     - Input power (from wall outlet)
+     - Output power (to server components)
+     - Temperature (°C)
+     - Efficiency percentage (calculated: output/input × 100)
+   - **Fan Mode Toggle** - Switch between Auto and Manual control
+   - **Fan Sliders** - Drag to adjust individual fan speeds (0-100%) when in Manual mode
+   - **Auto-Refresh** - Data updates automatically every 5 seconds
+   - **Logout** - Toolbar button to clear credentials and return to login
 
 3. **Auto-Login:**
    - On subsequent launches, app automatically logs in with saved credentials
@@ -73,39 +85,51 @@ A native iOS app for managing your Inspur server through its BMC interface.
 ## Data Refreshing
 
 - **Automatic:** Every 5 seconds while dashboard is active
-- **Manual:** Pull-to-refresh gesture or toolbar menu
-- **On Actions:** Automatically refreshes after power/fan changes
+- **On Actions:** Automatically refreshes after power/fan/mode changes
+- **Timestamp:** Last Updated card shows when data was successfully fetched
+- **Error Handling:** Failed fetches don't update timestamp, previous data remains visible
 
 ## UI Components
 
+### Last Updated Card
+- Clock icon with timestamp
+- Shows date and time of last successful data fetch
+- Only updates when all data endpoints succeed
+
 ### Power Control Card
-- Current power status (ON/OFF indicator)
-- Green power button (disabled when server is on)
-- Error message display
+- Current power status (ON/OFF with colored indicator)
+- Power on button (disabled when server is already on)
+- Loading spinner during power operations
+- Error message display for failed operations
 
 ### PSU Monitoring Cards
-- Total input/output power
-- Individual PSU details:
-  - Input power (Watts)
-  - Output power (Watts)
-  - Temperature (°C)
-  - Efficiency percentage
-  - Model information
+- Total system input/output power summary
+- Individual PSU cards with responsive grid layout:
+  - ↓ Input power symbol (blue)
+  - ↑ Output power symbol (green)
+  - 🌡️ Temperature symbol (orange)
+  - 📊 Efficiency symbol (green)
+  - Model number display
+- Symbol-only design for compact display
 
 ### Fan Control Card
-- Control mode indicator (MANUAL/AUTO)
-- 8 individual fan sliders
-- Current RPM display
-- Percentage display
-- Real-time updates
+- Auto/Manual mode toggle switch
+- Mode indicator (orange for Auto, blue for Manual)
+- 8 individual fan sliders (only active in Manual mode)
+- Current RPM and percentage display for each fan
+- Tortoise/hare speed icons
+- Real-time updates every 5 seconds
 
 ## Build Information
 
-- **Platform:** iOS 18.6.2+
+- **Platform:** iOS 18.6+
 - **Language:** Swift 5
-- **Framework:** SwiftUI
-- **Architecture:** MVVM
-- **Deployment Target:** iOS Simulator / Device
+- **Framework:** SwiftUI with Grid layouts
+- **Architecture:** MVVM pattern
+- **Deployment Target:** iOS 18.6+ (Simulator & Device)
+- **UI Components:** Native SwiftUI (Grid, Toggle, Slider, Cards)
+- **Networking:** URLSession with async/await
+- **Storage:** iOS Keychain Services
 
 ## API Documentation
 

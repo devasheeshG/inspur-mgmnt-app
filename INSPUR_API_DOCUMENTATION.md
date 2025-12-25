@@ -143,6 +143,40 @@ Cookie: QSESSIONID=<session-id>
 
 ---
 
+### **Set Fan Mode**
+
+**Endpoint:** `PUT /api/settings/fans-mode`
+
+**Required Headers:**
+```
+Content-Type: application/json;charset=UTF-8
+X-CSRFTOKEN: <token-from-login>
+X-Requested-With: XMLHttpRequest
+Cookie: QSESSIONID=<session-id>
+```
+
+**Request Body:**
+```json
+{
+  "control_mode": "manual"
+}
+```
+
+**Control Mode Values:**
+- `"manual"` = Switch to manual fan control
+- `"auto"` = Switch to automatic fan control
+
+**Response:**
+```json
+{
+  "control_mode": "manual"
+}
+```
+
+**Note:** When switching to automatic mode, the BMC will take over fan speed control based on temperature sensors. When in manual mode, fan speeds can be set individually using the Set Fan Speed endpoint.
+
+---
+
 ### **Set Fan Speed**
 
 **Endpoint:** `PUT /api/settings/fan/{fan_id}`
