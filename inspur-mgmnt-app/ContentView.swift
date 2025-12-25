@@ -295,6 +295,11 @@ struct FanControlCard: View {
                 }
             }
             
+            // Set All Fans control (only show in manual mode)
+            if fanInfo.controlMode == "manual" {
+                SetAllFansView(viewModel: viewModel)
+            }
+            
             ForEach(fanInfo.fans.filter { $0.isPresent }) { fan in
                 FanSliderView(fan: fan, viewModel: viewModel)
             }
@@ -372,6 +377,61 @@ struct FanSliderView: View {
                 sliderValue = Double(newValue)
             }
         }
+    }
+}
+
+struct SetAllFansView: View {
+    @ObservedObject var viewModel: AppViewModel
+    @State private var allFansValue: Double = 50
+    @State private var isChanging = false
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Image(systemName: "square.grid.3x3.fill")
+                    .foregroundColor(.purple)
+                    .font(.subheadline)
+                Text("Set All Fans")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.purple)
+                Spacer()
+                if viewModel.isLoading {
+                    ProgressView()
+                        .scaleEffect(0.8)
+                }
+            }
+            
+            HStack(spacing: 12) {
+                Image(systemName: "tortoise.fill")
+                    .foregroundColor(.secondary)
+                    .font(.caption)
+                
+                Slider(value: $allFansValue, in: 0...100, step: 5) { editing in
+                    isChanging = editing
+                    if !editing {
+                        // User finished dragging
+                        Task {
+                            await viewModel.setAllFanSpeeds(duty: Int(allFansValue))
+                        }
+                    }
+                }
+                .tint(.purple)
+                
+                Image(systemName: "hare.fill")
+                    .foregroundColor(.purple)
+                    .font(.caption)
+                
+                Text("\(Int(allFansValue))%")
+                    .font(.caption)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.purple)
+                    .frame(width: 40, alignment: .trailing)
+            }
+        }
+        .padding()
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(12)
     }
 }
 

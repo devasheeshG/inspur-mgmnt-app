@@ -212,6 +212,45 @@ class AppViewModel: ObservableObject {
         }
     }
     
+    func setAllFanSpeeds(duty: Int) async {
+        print("[DEBUG] 🌀🌀 Setting ALL fans to \(duty)%")
+        isLoading = true
+        errorMessage = nil
+        
+        // Get all present fan IDs
+        guard let fanInfo = fanInfo else {
+            print("[DEBUG] ✗ No fan info available")
+            isLoading = false
+            return
+        }
+        
+        let presentFanIds = fanInfo.fans.filter { $0.isPresent }.map { $0.id }
+        
+        do {
+            // Set all fans concurrently
+            try await withThrowingTaskGroup(of: Void.self) { group in
+                for fanId in presentFanIds {
+                    group.addTask {
+                        try await self.apiService.setFanSpeed(fanId: fanId, duty: duty)
+                        print("[DEBUG] ✓ Fan \(fanId) set to \(duty)%")
+                    }
+                }
+                try await group.waitForAll()
+            }
+            
+            print("[DEBUG] ✓ All fans set to \(duty)% successfully")
+            
+            // Refresh fan info
+            try await Task.sleep(nanoseconds: 500_000_000) // 0.5 seconds
+            await fetchFanInfo()
+        } catch {
+            print("[DEBUG] ✗ Set all fans failed: \(error.localizedDescription)")
+            handleError(error)
+        }
+        
+        isLoading = false
+    }
+    
     func setFanMode(mode: String) async {
         print("[DEBUG] 🔄 Setting fan mode to \(mode)")
         isLoading = true
