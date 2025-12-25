@@ -21,6 +21,9 @@ class AppViewModel: ObservableObject {
     @Published var psuInfo: PSUInfo?
     @Published var lastUpdated: Date?
     
+    // Fetch state
+    private var isFetching = false
+    
     // Polling timer
     private var pollingTimer: Timer?
     
@@ -91,6 +94,11 @@ class AppViewModel: ObservableObject {
     // MARK: - Data Fetching
     
     func fetchAllData() async {
+        // Prevent overlapping fetches
+        guard !isFetching else { return }
+        
+        isFetching = true
+        errorMessage = nil  // Clear previous errors
         var fetchErrors = 0
         
         await withTaskGroup(of: Bool.self) { group in
@@ -109,6 +117,8 @@ class AppViewModel: ObservableObject {
         if fetchErrors == 0 {
             lastUpdated = Date()
         }
+        
+        isFetching = false
     }
     
     func fetchPowerStatus() async -> Bool {
@@ -193,6 +203,11 @@ class AppViewModel: ObservableObject {
     // MARK: - Error Handling
     
     private func handleError(_ error: Error) {
+        // Ignore cancellation errors (expected when refreshing)
+        if let urlError = error as? URLError, urlError.code == .cancelled {
+            return
+        }
+        
         if let apiError = error as? APIService.APIError {
             switch apiError {
             case .unauthorized:
@@ -200,6 +215,12 @@ class AppViewModel: ObservableObject {
                 Task {
                     await attemptAutoLogin()
                 }
+            case .networkError(let underlyingError):
+                // Check if underlying error is cancellation
+                if let urlError = underlyingError as? URLError, urlError.code == .cancelled {
+                    return
+                }
+                errorMessage = apiError.localizedDescription
             default:
                 errorMessage = apiError.localizedDescription
             }
