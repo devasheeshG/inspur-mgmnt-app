@@ -53,15 +53,6 @@ class APIService: NSObject {
         self.session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
     }
     
-    // MARK: - Base URL
-    
-    private var baseURL: String {
-        guard let serverIP = keychain.serverIP else {
-            return "https://192.168.0.200"
-        }
-        return "https://\(serverIP)"
-    }
-    
     // MARK: - Request Builder
     
     private func buildRequest(
@@ -70,7 +61,7 @@ class APIService: NSObject {
         body: Data? = nil,
         requiresAuth: Bool = true
     ) throws -> URLRequest {
-        guard let url = URL(string: baseURL + endpoint) else {
+        guard let url = URL(string: "https://\(keychain.serverIP!)" + endpoint) else {
             throw APIError.invalidURL
         }
         
