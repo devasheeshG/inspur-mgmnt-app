@@ -136,28 +136,6 @@ A native iOS app for managing your Inspur server through its BMC interface.
 - Small/large fan icons for speed indication
 - Real-time updates every 5 seconds
 
-## Build Information
-
-- **Platform:** iOS 18.6+
-- **Language:** Swift 5
-- **Framework:** SwiftUI with Grid layouts
-- **Architecture:** MVVM pattern
-- **Deployment Target:** iOS 18.6+ (Simulator & Device)
-- **UI Components:** Native SwiftUI (Grid, Toggle, Slider, Cards)
-- **Networking:** URLSession with async/await
-- **Storage:** iOS Keychain Services
-
 ## API Documentation
 
 See [INSPUR_API_DOCUMENTATION.md](INSPUR_API_DOCUMENTATION.md) for complete API reference.
-
-## Future Enhancements
-
-Potential features to add:
-- Temperature monitoring
-- Event log viewer
-- Network configuration
-- User management
-- Proxmox hypervisor integration (for safe power-off)
-- Widgets for quick status
-- Push notifications for alerts
