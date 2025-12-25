@@ -295,7 +295,7 @@ struct FanControlCard: View {
             }
             
             ForEach(fanInfo.fans.filter { $0.isPresent }) { fan in
-                FanSliderView(fan: fan, viewModel: viewModel)
+                FanSliderView(fan: fan, fanInfo: fanInfo, viewModel: viewModel)
             }
         }
         .padding()
@@ -307,12 +307,14 @@ struct FanControlCard: View {
 
 struct FanSliderView: View {
     let fan: Fan
+    let fanInfo: FanInfo
     @ObservedObject var viewModel: AppViewModel
     @State private var sliderValue: Double
     @State private var isChanging = false
     
-    init(fan: Fan, viewModel: AppViewModel) {
+    init(fan: Fan, fanInfo: FanInfo, viewModel: AppViewModel) {
         self.fan = fan
+        self.fanInfo = fanInfo
         self.viewModel = viewModel
         _sliderValue = State(initialValue: Double(fan.speedPercent))
     }
@@ -351,6 +353,7 @@ struct FanSliderView: View {
                     }
                 }
                 .tint(.blue)
+                .disabled(fanInfo.controlMode != "manual")
                 
                 Image(systemName: "fan.fill")
                     .foregroundColor(.blue)
