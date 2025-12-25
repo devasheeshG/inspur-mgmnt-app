@@ -18,54 +18,6 @@ A native iOS app for managing your Inspur server through its BMC interface.
 11. **Last Updated Timestamp** - Shows exact time of last successful data refresh
 12. **Debug Logging** - Comprehensive console logs for troubleshooting
 
-## Architecture
-
-### Files Created
-- **Models.swift** - Data models for API responses (LoginResponse, PowerStatus, FanInfo, PSUInfo)
-- **KeychainManager.swift** - Secure credential storage using iOS Keychain
-- **APIService.swift** - Network layer with URLSession, authentication, and all API endpoints
-- **AppViewModel.swift** - Main view model with ObservableObject for state management
-- **LoginView.swift** - Login screen with server IP, username, and password fields
-- **ContentView.swift** - Main dashboard with power control, fan sliders, and PSU cards
-- **inspur_mgmnt_appApp.swift** - App entry point with authentication flow
-
-### API Endpoints Used
-- `POST /api/session` - Authentication with username/password
-- `GET /api/chassis-status` - Get current power status (on/off)
-- `POST /api/actions/power` - Send power on command
-- `GET /api/sensors` - Get all sensor readings including CPU temperatures
-- `GET /api/settings/fans-mode` - Get current fan control mode
-- `PUT /api/settings/fans-mode` - Set fan control mode (auto/manual)
-- `GET /api/status/fan_info` - Get all fan speeds, RPMs, and status
-- `PUT /api/settings/fan/{id}` - Set individual fan speed (manual mode only)
-- `GET /api/status/psu_info` - Get PSU power consumption, temperature, and efficiency
-
-## Usage
-
-1. **First Launch:**
-   - Enter your BMC IP address (e.g., 192.168.0.200)
-   - Enter BMC username
-   - Enter BMC password
-   - Tap "Sign In"
-
-2. **Dashboard:**
-   - **Last Updated Timestamp** - Shows exact date and time of last data refresh
-   - **Power On Button** - Tap to power on the server (disabled when already on)
-   - **CPU Temperatures** - Real-time temperature display for both CPUs with color coding
-   - **PSU Cards** - View total and individual PSU metrics:
-     - Input power (from wall outlet)
-     - Output power (to server components)
-     - Temperature (°C)
-   - **Fan Mode Toggle** - Switch between Auto and Manual control
-   - **Set All Fans** - Quick slider to set all fans to same speed (manual mode only)
-   - **Fan Sliders** - Drag to adjust individual fan speeds (0-100%) when in Manual mode
-   - **Auto-Refresh** - Data updates automatically every 5 seconds
-   - **Logout** - Toolbar button to clear credentials and return to login
-
-3. **Auto-Login:**
-   - On subsequent launches, app automatically logs in with saved credentials
-   - If session expires, app automatically re-authenticates
-
 ## Configuration
 
 ### Server Requirements
