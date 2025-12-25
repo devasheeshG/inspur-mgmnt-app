@@ -8,7 +8,7 @@ A native iOS app for managing your Inspur server through its BMC interface.
 2. **Fan Mode Toggle** - Switch between automatic and manual fan control modes
 3. **Set All Fans** - Quickly set all fans to the same speed at once (manual mode only)
 4. **Fan Speed Control** - Manually adjust all 8 fans independently (0-100%)
-5. **PSU Monitoring** - Real-time power consumption, efficiency, and temperature for both PSUs
+5. **PSU Monitoring** - Real-time power consumption and temperature for both PSUs
 6. **Secure Credential Storage** - Login once, credentials stored in iOS Keychain
 7. **Auto-Login** - Automatically reconnects on app launch with stored credentials
 8. **Session Management** - Handles CSRF tokens and session cookies automatically
@@ -53,7 +53,6 @@ A native iOS app for managing your Inspur server through its BMC interface.
      - Input power (from wall outlet)
      - Output power (to server components)
      - Temperature (°C)
-     - Efficiency percentage (calculated: output/input × 100)
    - **Fan Mode Toggle** - Switch between Auto and Manual control
    - **Set All Fans** - Quick slider to set all fans to same speed (manual mode only)
    - **Fan Sliders** - Drag to adjust individual fan speeds (0-100%) when in Manual mode
@@ -110,7 +109,6 @@ A native iOS app for managing your Inspur server through its BMC interface.
   - ↓ Input power symbol (blue)
   - ↑ Output power symbol (green)
   - 🌡️ Temperature symbol (orange)
-  - 📊 Efficiency symbol (green)
   - Model number display
 - Symbol-only design for compact display
 

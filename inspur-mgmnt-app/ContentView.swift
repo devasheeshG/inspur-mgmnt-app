@@ -236,17 +236,6 @@ struct PSUDetailView: View {
                             .fontWeight(.semibold)
                     }
                     .frame(maxWidth: .infinity)
-                    
-                    VStack(spacing: 4) {
-                        Image(systemName: "gauge.high")
-                            .font(.title3)
-                            .foregroundColor(.green)
-                        Text(String(format: "%.1f%%", psu.efficiency))
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.green)
-                    }
-                    .frame(maxWidth: .infinity)
                 }
             }
         }
