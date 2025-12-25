@@ -1,0 +1,113 @@
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Thu, 25 Dec 2025 11:57:20 GMT
+Server: lighttpd/1.4.35
+
+{
+  "controllers": [
+    {
+      "id": 1,
+      "status": "",
+      "serial_num": "",
+      "model": "",
+      "vendor": "",
+      "port_count": 0,
+      "driver_count": 0,
+      "dev_id": 0,
+      "firmware": "",
+      "mem_size": 0,
+      "dev_interface": "",
+      "controler_temp": 0,
+      "raid_cache_status": "",
+      "raid_cache_module_sn": "",
+      "raid_battry_status": "",
+      "raid_battry_cap": 0,
+      "raid_battry_state": ""
+    },
+    {
+      "id": 2,
+      "status": "",
+      "serial_num": "",
+      "model": "",
+      "vendor": "",
+      "port_count": 0,
+      "driver_count": 0,
+      "dev_id": 0,
+      "firmware": "",
+      "mem_size": 0,
+      "dev_interface": "",
+      "controler_temp": 0,
+      "raid_cache_status": "",
+      "raid_cache_module_sn": "",
+      "raid_battry_status": "",
+      "raid_battry_cap": 0,
+      "raid_battry_state": ""
+    }
+  ],
+  "physical_drives": [
+    {
+      "id": 1,
+      "name": "",
+      "status": "",
+      "serial_num": "",
+      "model": "",
+      "vendor": "",
+      "media_type": "",
+      "capacity": 0,
+      "coerced_size": 0,
+      "dev_id": 0,
+      "slot_id": 0,
+      "enclosure_id": 0,
+      "dev_interface": "",
+      "max_speed": 0,
+      "present_speed": 0,
+      "temperature": 0,
+      "encr_stat": "",
+      "fw_ver": "",
+      "bad_block": 0,
+      "disk_utilization": 0,
+      "error_count": 0
+    },
+    {
+      "id": 2,
+      "name": "",
+      "status": "",
+      "serial_num": "",
+      "model": "",
+      "vendor": "",
+      "media_type": "",
+      "capacity": 0,
+      "coerced_size": 0,
+      "dev_id": 0,
+      "slot_id": 0,
+      "enclosure_id": 0,
+      "dev_interface": "",
+      "max_speed": 0,
+      "present_speed": 0,
+      "temperature": 0,
+      "encr_stat": "",
+      "fw_ver": "",
+      "bad_block": 0,
+      "disk_utilization": 0,
+      "error_count": 0
+    }
+  ],
+  "logical_drives": [
+    {
+      "id": 1,
+      "status": "",
+      "capacity": 0,
+      "flt_tol": "",
+      "encr_stat": ""
+    },
+    {
+      "id": 2,
+      "status": "",
+      "capacity": 0,
+      "flt_tol": "",
+      "encr_stat": ""
+    }
+  ]
+}

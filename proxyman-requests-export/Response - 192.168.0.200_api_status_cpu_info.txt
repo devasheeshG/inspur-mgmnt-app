@@ -1,0 +1,41 @@
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Thu, 25 Dec 2025 11:57:19 GMT
+Server: lighttpd/1.4.35
+
+{
+  "cpu_utilization": 0,
+  "cpu_utilization_threshold": 0,
+  "cpu_power": 0,
+  "cpu_load": 0,
+  "processors": [
+    {
+      "proc_id": 0,
+      "proc_name": "",
+      "proc_status": 0,
+      "proc_speed": 0,
+      "proc_core_count": 0,
+      "proc_thread_count": 0,
+      "proc_tdp": 0,
+      "proc_mem_technology": "-",
+      "proc_l1cache_size": 0,
+      "proc_l2cache_size": 0,
+      "proc_l3cache_size": 0
+    },
+    {
+      "proc_id": 1,
+      "proc_name": "",
+      "proc_status": 0,
+      "proc_speed": 0,
+      "proc_core_count": 0,
+      "proc_thread_count": 0,
+      "proc_tdp": 0,
+      "proc_mem_technology": "-",
+      "proc_l1cache_size": 0,
+      "proc_l2cache_size": 0,
+      "proc_l3cache_size": 0
+    }
+  ]
+}

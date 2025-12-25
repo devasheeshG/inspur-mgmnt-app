@@ -1,0 +1,19 @@
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Set-Cookie: QSESSIONID=5f370d268c05dfeb62CcPeziiYwVBx; path=/
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Thu, 25 Dec 2025 11:57:02 GMT
+Server: lighttpd/1.4.35
+
+{
+  "ok": 0,
+  "privilege": 4,
+  "extendedpriv": 259,
+  "racsession_id": 2,
+  "remote_addr": "192.168.0.23",
+  "server_name": "192.168.0.200",
+  "server_addr": "192.168.0.200",
+  "HTTPSEnabled": 1,
+  "CSRFToken": "KZ3raSXV"
+}

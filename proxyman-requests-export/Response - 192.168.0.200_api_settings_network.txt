@@ -1,0 +1,51 @@
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Thu, 25 Dec 2025 11:57:09 GMT
+Server: lighttpd/1.4.35
+
+[
+  {
+    "id": 1,
+    "interface_name": "eth0",
+    "channel_number": 1,
+    "lan_enable": 1,
+    "mac_address": "B4:05:5D:3E:2E:08",
+    "ipv4_enable": 1,
+    "ipv4_dhcp_enable": 0,
+    "ipv4_address": "192.168.0.200",
+    "ipv4_subnet": "255.255.255.0",
+    "ipv4_gateway": "192.168.0.1",
+    "ipv6_enable": 1,
+    "ipv6_dhcp_enable": 1,
+    "ipv6_address": "::",
+    "ipv6_index": 0,
+    "ipv6_prefix": 0,
+    "ipv6_gateway": "::",
+    "vlan_enable": 0,
+    "vlan_id": 0,
+    "vlan_priority": 0
+  },
+  {
+    "id": 2,
+    "interface_name": "eth1",
+    "channel_number": 8,
+    "lan_enable": 0,
+    "mac_address": "00:00:00:00:00:00",
+    "ipv4_enable": 0,
+    "ipv4_dhcp_enable": -1,
+    "ipv4_address": "0.0.0.0",
+    "ipv4_subnet": "0.0.0.0",
+    "ipv4_gateway": "0.0.0.0",
+    "ipv6_enable": 0,
+    "ipv6_dhcp_enable": 1,
+    "ipv6_address": "::",
+    "ipv6_index": 0,
+    "ipv6_prefix": 0,
+    "ipv6_gateway": "::",
+    "vlan_enable": 0,
+    "vlan_id": 0,
+    "vlan_priority": 0
+  }
+]

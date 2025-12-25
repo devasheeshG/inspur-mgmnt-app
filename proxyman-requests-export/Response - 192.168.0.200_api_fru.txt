@@ -1,0 +1,57 @@
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Thu, 25 Dec 2025 11:57:08 GMT
+Server: lighttpd/1.4.35
+
+[
+  {
+    "device": {
+      "id": 0,
+      "name": "BMC_FRU",
+      "uuid": "0000:00000"
+    },
+    "common_header": {
+      "version": 1,
+      "internal_use_area_start_offset": 0,
+      "chassis_info_area_start_offset": 1,
+      "board_info_area_start_offset": 7,
+      "product_info_area_start_offset": 14,
+      "multi_record_area_start_offset": 0
+    },
+    "chassis": {
+      "version": 1,
+      "length": 6,
+      "type": "Rack Mount Chassis",
+      "part_number": "P51M1S1.22",
+      "serial_number": "0",
+      "custom_fields": "AliType=P51M1S1.22.C3V1P3U2\\n"
+    },
+    "board": {
+      "version": 1,
+      "length": 7,
+      "language": 0,
+      "date": "Tue Mar 26 02:35:00 2019\\n",
+      "manufacturer": "Inspur",
+      "product_name": "YZMB-00824-103",
+      "serial_number": "MBL331S42154B10",
+      "part_number": "SA5212H5",
+      "fru_file_id": "",
+      "custom_fields": ""
+    },
+    "product": {
+      "version": 1,
+      "length": 9,
+      "language": 0,
+      "manufacturer": "Inspur",
+      "product_name": "AliServer Thor02-12S",
+      "part_number": "0",
+      "product_version": "00001",
+      "serial_number": "220644778",
+      "asset_tag": "TD11101001525244",
+      "fru_file_id": "",
+      "custom_fields": ""
+    }
+  }
+]

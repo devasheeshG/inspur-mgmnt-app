@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Thu, 25 Dec 2025 11:57:34 GMT
+Server: lighttpd/1.4.35
+
+{
+  "control_mode": "manual"
+}

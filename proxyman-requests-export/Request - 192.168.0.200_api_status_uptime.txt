@@ -1,0 +1,18 @@
+GET /api/status/uptime HTTP/1.1
+Host: 192.168.0.200
+Connection: keep-alive
+sec-ch-ua-platform: "macOS"
+X-CSRFTOKEN: KZ3raSXV
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+sec-ch-ua: "Chromium";v="143", "Not A(Brand";v="24"
+sec-ch-ua-mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://192.168.0.200/main.html
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
+Cookie: QSESSIONID=5f370d268c05dfeb62CcPeziiYwVBx; refresh_disable=1
+

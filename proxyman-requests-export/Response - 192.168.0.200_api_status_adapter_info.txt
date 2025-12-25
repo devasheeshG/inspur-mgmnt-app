@@ -1,0 +1,109 @@
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Thu, 25 Dec 2025 11:57:19 GMT
+Server: lighttpd/1.4.35
+
+{
+  "bmc_ports": [
+    {
+      "id": 1,
+      "name": "eth0",
+      "mac_addr": "B4:05:5D:3E:2E:08",
+      "ip_addr": "192.168.0.200",
+      "status": 0
+    },
+    {
+      "id": 2,
+      "name": "eth1",
+      "mac_addr": "00:00:00:00:00:00",
+      "ip_addr": "0.0.0.0",
+      "status": 0
+    }
+  ],
+  "sys_port_speed_threshold": 0,
+  "sys_port_utilization_threshold": 0,
+  "sys_port_plp_threshold": 0,
+  "sys_adapters": [
+    {
+      "id": 1,
+      "name": "",
+      "location": "",
+      "vendor": "",
+      "model": "",
+      "fw_ver": "",
+      "status": "",
+      "ports": [
+        {
+          "id": 1,
+          "name": "",
+          "mac_addr": "00:00:00:00:00:00",
+          "ip_addr": "",
+          "mac_addr1": "00:00:00:00:00:00",
+          "ip_addr1": "",
+          "mac_addr2": "00:00:00:00:00:00",
+          "ip_addr2": "",
+          "mac_addr3": "00:00:00:00:00:00",
+          "ip_addr3": "",
+          "status": "Unknown",
+          "packets": 0,
+          "speed_mbps": 0,
+          "utilization": 0,
+          "plp": 0
+        },
+        {
+          "id": 2,
+          "name": "",
+          "mac_addr": "00:00:00:00:00:00",
+          "ip_addr": "",
+          "mac_addr1": "00:00:00:00:00:00",
+          "ip_addr1": "",
+          "mac_addr2": "00:00:00:00:00:00",
+          "ip_addr2": "",
+          "mac_addr3": "00:00:00:00:00:00",
+          "ip_addr3": "",
+          "status": "Unknown",
+          "packets": 0,
+          "speed_mbps": 0,
+          "utilization": 0,
+          "plp": 0
+        },
+        {
+          "id": 3,
+          "name": "",
+          "mac_addr": "00:00:00:00:00:00",
+          "ip_addr": "",
+          "mac_addr1": "00:00:00:00:00:00",
+          "ip_addr1": "",
+          "mac_addr2": "00:00:00:00:00:00",
+          "ip_addr2": "",
+          "mac_addr3": "00:00:00:00:00:00",
+          "ip_addr3": "",
+          "status": "Unknown",
+          "packets": 0,
+          "speed_mbps": 0,
+          "utilization": 0,
+          "plp": 0
+        },
+        {
+          "id": 4,
+          "name": "",
+          "mac_addr": "00:00:00:00:00:00",
+          "ip_addr": "",
+          "mac_addr1": "00:00:00:00:00:00",
+          "ip_addr1": "",
+          "mac_addr2": "00:00:00:00:00:00",
+          "ip_addr2": "",
+          "mac_addr3": "00:00:00:00:00:00",
+          "ip_addr3": "",
+          "status": "Unknown",
+          "packets": 0,
+          "speed_mbps": 0,
+          "utilization": 0,
+          "plp": 0
+        }
+      ]
+    }
+  ]
+}

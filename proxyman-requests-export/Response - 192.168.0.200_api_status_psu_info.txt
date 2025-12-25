@@ -1,0 +1,68 @@
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Thu, 25 Dec 2025 11:57:19 GMT
+Server: lighttpd/1.4.35
+
+{
+  "present_power_reading": 0,
+  "rated_power": 0,
+  "hem_mode": "",
+  "power_supplies_redundant": "NOT_REDUNDANT",
+  "power_supplies": [
+    {
+      "id": 1,
+      "present": 1,
+      "power_status": 0,
+      "vendor_id": "LITEON",
+      "model": "PS-2801-12L",
+      "serial_num": "6K12L012015GTJ",
+      "part_num": "",
+      "rated_power": 0,
+      "fw_ver": "\u0006\b\u0001\u0001",
+      "temperature": 20,
+      "ps_fan_status": "",
+      "ps_fan_speed": 0,
+      "ps_in_power": 76,
+      "ps_out_power": 68,
+      "ps_in_volt": 259,
+      "ps_out_volt": 1232,
+      "ps_in_current": 41,
+      "ps_out_current": 748,
+      "ps_out_power_max": 800
+    },
+    {
+      "id": 2,
+      "present": 1,
+      "power_status": 0,
+      "vendor_id": "LITEON",
+      "model": "PS-2801-12L",
+      "serial_num": "6K12L012015C5W",
+      "part_num": "",
+      "rated_power": 0,
+      "fw_ver": "\u0006\b\u0001\u0001",
+      "temperature": 21,
+      "ps_fan_status": "",
+      "ps_fan_speed": 0,
+      "ps_in_power": 74,
+      "ps_out_power": 102,
+      "ps_in_volt": 256,
+      "ps_out_volt": 1222,
+      "ps_in_current": 62,
+      "ps_out_current": 1153,
+      "ps_out_power_max": 800
+    }
+  ],
+  "storage_batteries": [
+    {
+      "id": 1,
+      "present": 0,
+      "condition": "",
+      "model": "",
+      "serial_num": "",
+      "max_cap_watts": 0,
+      "fw_ver": ""
+    }
+  ]
+}

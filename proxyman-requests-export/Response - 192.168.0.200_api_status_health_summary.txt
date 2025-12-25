@@ -1,0 +1,31 @@
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Thu, 25 Dec 2025 11:57:08 GMT
+Server: lighttpd/1.4.35
+
+{
+  "system_health": "",
+  "hostpwr_state": "",
+  "cpu_status": "OK",
+  "mem_status": "OK",
+  "storage_status": "",
+  "fans_status": "OK",
+  "fans_redundancy": "",
+  "power_supplies_status": "OK",
+  "power_supplies_redundancy": "",
+  "power_supplies_mismatch": 0,
+  "voltage_status": "OK",
+  "temperature_status": "OK",
+  "nic_status": "",
+  "bios_hlth_status": "",
+  "me_hlth_status": "",
+  "tpm_status": "",
+  "tpm_module_type": "",
+  "uid_led": "",
+  "chassis_status": "OPEN",
+  "ams_ready": "",
+  "battery_status": "",
+  "in_post": 0
+}

@@ -1,0 +1,49 @@
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Thu, 25 Dec 2025 11:57:08 GMT
+Server: lighttpd/1.4.35
+
+[
+  {
+    "id": 0,
+    "dev_name": "BMC",
+    "dev_version": "3.95 (2019-11-05 11:23:49)"
+  },
+  {
+    "id": 1,
+    "dev_name": "BIOS",
+    "dev_version": "3.0.37"
+  },
+  {
+    "id": 2,
+    "dev_name": "ME",
+    "dev_version": "0A:4.0.4.393"
+  },
+  {
+    "id": 3,
+    "dev_name": "PSU_1",
+    "dev_version": "1.010-1.000"
+  },
+  {
+    "id": 4,
+    "dev_name": "PSU_2",
+    "dev_version": "1.010-1.000"
+  },
+  {
+    "id": 5,
+    "dev_name": "CPU0_VR",
+    "dev_version": "YZMB-00824-U44-V2.0"
+  },
+  {
+    "id": 6,
+    "dev_name": "CPU1_VR",
+    "dev_version": "YZMB-00824-U48-V2.0"
+  },
+  {
+    "id": 7,
+    "dev_name": "CPLD",
+    "dev_version": "2.8"
+  }
+]
