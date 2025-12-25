@@ -371,7 +371,7 @@ struct FanSliderView: View {
 
 struct SetAllFansView: View {
     @ObservedObject var viewModel: AppViewModel
-    @State private var allFansValue: Double = 50
+    @State private var allFansValue: Double = 0
     @State private var isChanging = false
     
     var body: some View {
