@@ -14,6 +14,30 @@ struct ContentView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 20) {
+                    // Last Updated Section
+                    if let lastUpdated = viewModel.lastUpdated {
+                        HStack {
+                            Image(systemName: "clock.fill")
+                                .foregroundColor(.secondary)
+                                .font(.title3)
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Last Updated")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                Text(lastUpdated.formatted(date: .omitted, time: .standard))
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
+                                Text(lastUpdated, style: .date)
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            Spacer()
+                        }
+                        .padding()
+                        .background(Color(.secondarySystemBackground))
+                        .cornerRadius(12)
+                    }
+                    
                     // Power Control Section
                     PowerControlCard(viewModel: viewModel)
                     
@@ -32,18 +56,8 @@ struct ContentView: View {
             .navigationTitle("Server Control")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Menu {
-                        Button(action: { Task { await viewModel.fetchAllData() } }) {
-                            Label("Refresh", systemImage: "arrow.clockwise")
-                        }
-                        
-                        Divider()
-                        
-                        Button(role: .destructive, action: { viewModel.logout() }) {
-                            Label("Logout", systemImage: "rectangle.portrait.and.arrow.right")
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
+                    Button(role: .destructive, action: { viewModel.logout() }) {
+                        Label("Logout", systemImage: "rectangle.portrait.and.arrow.right")
                     }
                 }
             }

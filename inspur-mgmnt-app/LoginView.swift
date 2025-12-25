@@ -130,6 +130,9 @@ struct LoginView: View {
     }
     
     private func login() {
+        // Validate before attempting login
+        guard isFormValid else { return }
+        
         focusedField = nil
         
         Task {
@@ -141,7 +144,7 @@ struct LoginView: View {
         let keychain = KeychainManager.shared
         serverIP = keychain.serverIP ?? ""
         username = keychain.username ?? ""
-        // Don't pre-fill password for security
+        password = keychain.password ?? ""
     }
 }
 

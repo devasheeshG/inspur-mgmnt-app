@@ -19,6 +19,7 @@ class AppViewModel: ObservableObject {
     @Published var powerStatus: PowerStatus?
     @Published var fanInfo: FanInfo?
     @Published var psuInfo: PSUInfo?
+    @Published var lastUpdated: Date?
     
     // Polling timer
     private var pollingTimer: Timer?
@@ -90,34 +91,53 @@ class AppViewModel: ObservableObject {
     // MARK: - Data Fetching
     
     func fetchAllData() async {
-        await withTaskGroup(of: Void.self) { group in
+        var fetchErrors = 0
+        
+        await withTaskGroup(of: Bool.self) { group in
             group.addTask { await self.fetchPowerStatus() }
             group.addTask { await self.fetchFanInfo() }
             group.addTask { await self.fetchPSUInfo() }
+            
+            for await success in group {
+                if !success {
+                    fetchErrors += 1
+                }
+            }
+        }
+        
+        // Only update timestamp if all fetches succeeded
+        if fetchErrors == 0 {
+            lastUpdated = Date()
         }
     }
     
-    func fetchPowerStatus() async {
+    func fetchPowerStatus() async -> Bool {
         do {
             powerStatus = try await apiService.getPowerStatus()
+            return true
         } catch {
             handleError(error)
+            return false
         }
     }
     
-    func fetchFanInfo() async {
+    func fetchFanInfo() async -> Bool {
         do {
             fanInfo = try await apiService.getFanInfo()
+            return true
         } catch {
             handleError(error)
+            return false
         }
     }
     
-    func fetchPSUInfo() async {
+    func fetchPSUInfo() async -> Bool {
         do {
             psuInfo = try await apiService.getPSUInfo()
+            return true
         } catch {
             handleError(error)
+            return false
         }
     }
     
