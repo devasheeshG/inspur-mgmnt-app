@@ -79,9 +79,9 @@ class AppViewModel: ObservableObject {
             startPolling()
         } catch {
             print("[DEBUG] ✗ Auto-login failed: \(error.localizedDescription)")
-            // Silent fail for auto-login
+            // Silent fail for auto-login - keep credentials for retry later
             isAuthenticated = false
-            keychain.clearAll()
+            // Do NOT clear keychain here - credentials remain stored
         }
         
         isLoading = false
